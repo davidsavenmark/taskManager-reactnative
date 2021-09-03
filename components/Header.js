@@ -13,20 +13,16 @@ import {
 
 import { Entypo } from '@expo/vector-icons';
 
-const Header = ({handleClearTodos}) => {
+const Header = ({ handleClearTodos }) => {
     return (
-        
-        <HeaderView>
-        <HeaderTitle> TaskManager</HeaderTitle>
-        <HeaderButton 
-            onPress={handleClearTodos}
-
-        >
-            <Entypo name="trash" size={25} color={colors.tertiary}/>
+      <HeaderView>
+        <HeaderTitle>Todos</HeaderTitle>
+        <HeaderButton onPress={handleClearTodos}>
+          <Entypo name="trash" size={25} color={colors.tertiary} />
         </HeaderButton>
-        </HeaderView>
-
+      </HeaderView>
     );
-}
-
-export default Header;
+  };
+  
+  export default Header;
+  
