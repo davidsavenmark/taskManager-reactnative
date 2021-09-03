@@ -40,7 +40,7 @@ const ListItems = ({todos, setTodos, handleTriggerEdit}) => {
 
         <>
         
-        {todos.length == 0 && <TodoText>You have no tasks today</TodoText>}
+        {todos.length == 0 && <TodoText>  You have no tasks today</TodoText>}
         {todos.length != 0 && <SwipeListView
         data={todos}
         renderItem={(data) => {

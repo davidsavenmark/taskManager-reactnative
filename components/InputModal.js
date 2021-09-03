@@ -29,7 +29,8 @@ const InputModal = ({
     const handleCloseModal = () => {
         setModalVisible(false);
         setTodoInputValue("");
-        setTodoToBeEdited(null);
+        setTodoToBeEdited => (null);
+        
     };
 
     const handleSubmit = () => {

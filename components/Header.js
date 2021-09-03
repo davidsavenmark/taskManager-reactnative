@@ -17,7 +17,7 @@ const Header = ({handleClearTodos}) => {
     return (
         
         <HeaderView>
-        <HeaderTitle> Todos</HeaderTitle>
+        <HeaderTitle> TaskManager</HeaderTitle>
         <HeaderButton 
             onPress={handleClearTodos}
 
