@@ -15,7 +15,7 @@ import { Entypo } from '@expo/vector-icons';
 
 
 
-const ListItems = ({todos, setTodos}) => {
+const ListItems = ({todos, setTodos, handleTriggerEdit}) => {
     // For styling swipeed todo row
     const [swipedRow, setSwipedRow] = useState(null);
 
@@ -42,6 +42,8 @@ const ListItems = ({todos, setTodos}) => {
                 
                 underlayColor={colors.primary}
                 onPress={() => {
+
+                    handleTriggerEdit(data.item)
 
 
                 }}
