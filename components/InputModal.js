@@ -38,7 +38,7 @@ const InputModal = ({
             handleAddTodo({
                 title: todoInputValue,
                 date: new Date().toUTCString(),
-                key: `${(todos[todos.length-1] && parseInt(todos[todos.length -1].key)) + 1 }`
+                key: `${(todos[todos.length-1] && JSON.stringify(todos[todos.length -1].key))}`
             });
 
         }else{

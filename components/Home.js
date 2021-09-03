@@ -1,39 +1,28 @@
 import React, {useState} from "react";
-import {Text} from 'react-native';
+
 
 //components
 import Header from "./Header";
 import ListItems from "./ListItems";
 import InputModal from './InputModal';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
+const Home = ({todos, setTodos}) => {
 
-const Home = () => {
-
-    // initial todos
-    const initialTodos = [{
-        title: "Gå ut med icco",
-        date: "Tors, 02 Sep 2021 17:28:10 GMT",
-        key: "null"
-    }, {
-        title: "Laga mat",
-        date: "Tors, 02 Sep 2021 17:28:10 GMT",
-        key: "null"
-    },
-    {
-        title: "Spela Conan Exiles",
-        date: "Tors, 02 Sep 2021 17:28:10 GMT",
-        key: "null"
-    }]
-
-    const [todos, setTodos] = useState(initialTodos);
 
     //clear all todos
 
     const handleClearTodos = () => {
-        setTodos([]);
+       
+
+        AsyncStorage.setItem("storedTodos", JSON.stringify([])).then(()=> {
+            setTodos([]);
+
+        }).catch(error => console.log(error));
+
     }
 
     //  Modal visibility 
@@ -43,9 +32,16 @@ const Home = () => {
     //function to add a new task
     const handleAddTodo = (todo) => {
 
+       
+
         const newTodos = [...todos, todo];
-        setTodos(newTodos);
-        setModalVisible(false);
+        
+
+
+        AsyncStorage.setItem("storedTodos", JSON.stringify([newTodos])).then(()=> {
+            setTodos(newTodos);
+            setModalVisible(false);
+        }).catch(error => console.log(error));
 
 
     }
@@ -53,6 +49,8 @@ const Home = () => {
     //Editing
 
     const [todoToBeEdited, setTodoTobeEdited] = useState(null);
+
+    
 
     const handleTriggerEdit = (item) => {
         setTodoTobeEdited(item);
@@ -65,9 +63,12 @@ const Home = () => {
         const newTodos = [...todos];
         const todoIndex= todos.findIndex((todo) => todo.key === editedTodo.key);
         newTodos.splice(todoIndex, 1, editedTodo);
-        setTodos(newTodos);
-        setTodoTobeEdited(null);
-        setModalVisible(false);
+       
+        AsyncStorage.setItem("storedTodos", JSON.stringify([newTodos])).then(()=> {
+            setTodos(newTodos);
+            setModalVisible(false);
+            setTodoTobeEdited(null);
+        }).catch(error => console.log(error));
 
     }
 

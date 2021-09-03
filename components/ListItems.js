@@ -13,17 +13,26 @@ import {SwipeListView} from "react-native-swipe-list-view";
 
 import { Entypo } from '@expo/vector-icons';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 
 const ListItems = ({todos, setTodos, handleTriggerEdit}) => {
     // For styling swipeed todo row
     const [swipedRow, setSwipedRow] = useState(null);
 
-    const handleDeleteTodo = (rowMap, rowKey) => {
+    const handleDeleteTodo = (rowMap, rowKey, index) => {
         const newTodos = [...todos];
         const todoIndex = todos.findIndex((todo) => todo.key === rowKey);
         newTodos.splice(todoIndex, 1);
-        setTodos(newTodos);
+
+
+        AsyncStorage.setItem("storedTodos", JSON.stringify([newTodos])).then(()=> {
+            setTodos(newTodos);
+            
+        }).catch(error => console.log(error));
+
 
     }
 
@@ -56,7 +65,7 @@ const ListItems = ({todos, setTodos, handleTriggerEdit}) => {
             )
             
         }}
-        renderHiddenItem={(data, rowMap) =>{
+        renderHiddenItem={(data, rowMap, index) =>{
             return(
             <ListViewHidden>
                 <HiddenButton
