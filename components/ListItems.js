@@ -36,7 +36,7 @@ const ListItems = ({ todos, setTodos, handleTriggerEdit }) => {
 
   return (
     <>
-      {todos.length == 0 && <TodoText>You have no todos today</TodoText>}
+      {todos.length == 0 && <TodoText>You have no tasks today</TodoText>}
       {todos.length != 0 && (
         <SwipeListView
           data={todos}
